@@ -23,7 +23,7 @@ This project is the part of Udacity Front-end Web Developer Nanodegree. The requ
 ## Changes made to achieve optimization 
 	
 ### How to Access the site:
-1. go to my [Github](https://github.com/rajatc25/FEND-Website-Optimisation) repository for the project
+1. go to my [Github](https://github.com/rajatc25/FEND-Website-Optimization) repository for the project
 2. The site is also being hosted by github at: https://rajatc25.github.io/FEND-Website-Optimization/
 
 ### Part 1: Optimize PageSpeed Insights score for index.html
