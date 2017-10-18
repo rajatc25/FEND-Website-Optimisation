@@ -63,6 +63,8 @@ main.js
      Moved all code reading layout property 'scrollTop'  outside of the loop and batch update the styling afterwards
      Reduced the number of pizza images appended to 25.
 	 
+#### NOTE: To read minified files in their original version, use online tools like CSS,JS,HTML Beautifier/Formatter.
+	 
 ****************************************************************************************************************************************************************************************
 	
 ## Original README content 
