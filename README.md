@@ -46,7 +46,7 @@ PageSpeed Insights Scores:
 
 ### Part 2: Optimize Frames per Second in pizza.html
 
-Website Location: https://rajatc25.github.io/FEND-Web-Optimisation/views/pizza.html
+Website Location: https://rajatc25.github.io/FEND-Web-Optimization/views/pizza.html
 
 Changes Made:
 pizza.html
