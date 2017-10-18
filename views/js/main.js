@@ -1,19 +1,13 @@
-/*
-Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
-jank-free at 60 frames per second.
-
-There are two major issues in this code that lead to sub-60fps performance. Can
-you spot and fix both?
-
-
-Built into the code, you'll find a few instances of the User Timing API
-(window.performance), which will be console.log()ing frame rate data into the
-browser console. To learn more about User Timing API, check out:
-http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-
-Creator:
-Cameron Pittman, Udacity Course Developer
-cameron *at* udacity *dot* com
+/* Changes Made:
+ - Update function changeSliderLabel() and determineDx ()
+     To use documnet.getElementById instead of document.querySelector because it's more efficient accessing the DOM
+ - Update changePizzaSizes() to help avoid forced synchronous layout bottle necking	  
+	 To use document.getElementsByClassName & is more efficient accessing the DOM instead of document.querySelector
+	 Moved reading layout properties outside of the loop and  batch update the styling afterwards
+ - Update function updatePositions()
+     To use document.getElementsByClassName('mover') is more efficient accessing the DOM instead of instead of querySelectorAll(.'mover')
+     Moved all code reading layout property 'scrollTop'  outside of the loop and batch update the styling afterwards
+     Reduced the number of pizza images appended to 25. 
 */
 
 // As you may have realized, this website randomly generates pizzas.
@@ -455,8 +449,7 @@ var resizePizzas = function(size) {
 	  var dx = determineDx(randomPizzas[0], size);
 	  var newwidth = (randomPizzas[0].offsetWidth);
 	  var recalculatedWidth = (dx + newwidth) + 'px';
-
-	  for (var i = 0; i < randomPizzas.length; i++) {
+	  for (var i = 0, len = randomPizzas.length; i < len; i++) {
 		  randomPizzas[i].style.width = recalculatedWidth;
 	}
   }
@@ -472,9 +465,9 @@ var resizePizzas = function(size) {
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
+var pizzasDiv = document.getElementById("randomPizzas"); //moved this out of the loop
 // This for-loop actually creates and appends all of the pizzas when the page loads
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -539,16 +532,17 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
+  var movingPizzas = document.getElementById("movingPizzas1"); // Declared outside the loop
   // Reduced the number of pizza images appended to 25
-  for (var i = 0; i < 25; i++) {
-    var elem = document.createElement('img');
+  for (var i = 0,elem ; i< 25; i++) { 
+    elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.getElementById("movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
   updatePositions();
 });
